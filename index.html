@@ -2,7 +2,8 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, viewport-fit=cover">
+		<meta name="theme-color" content="#1b2716">
 		<title>Đại Chiến Thú Rừng</title>
 		<style>
 html, body, #canvas {
@@ -24,6 +25,41 @@ body {
 
 #canvas:focus {
 	outline: none;
+}
+
+/* Điện thoại: bàn cờ 1280x720 chỉ chơi được khi xoay ngang. */
+#rotate-overlay {
+	position: fixed;
+	left: 0; top: 0; right: 0; bottom: 0;
+	z-index: 30;
+	display: none;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding: 2rem;
+	background: radial-gradient(circle at 50% 40%, #314626 0%, #1b2716 70%);
+	color: #f6d98a;
+	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+}
+#rotate-overlay .icon {
+	font-size: clamp(3rem, 18vw, 6rem);
+	line-height: 1;
+	animation: turn 2s ease-in-out infinite;
+}
+#rotate-overlay .msg {
+	margin-top: 1.2rem;
+	font-size: clamp(1rem, 4.5vw, 1.4rem);
+	font-weight: 700;
+}
+#rotate-overlay .sub {
+	margin-top: .6rem;
+	color: #b9d39b;
+	font-size: clamp(.75rem, 3.2vw, 1rem);
+}
+@keyframes turn { 0%, 100% { transform: rotate(-25deg); } 50% { transform: rotate(65deg); } }
+@media (orientation: portrait) and (max-width: 900px) {
+	#rotate-overlay { display: flex; }
 }
 
 #status, #status-splash, #status-progress {
@@ -101,6 +137,15 @@ body {
 	border-radius: 999px;
 }
 
+#status-pct {
+	display: block;
+	margin-top: .8rem;
+	font-family: 'Noto Sans', 'Droid Sans', Arial, sans-serif;
+	font-size: clamp(.75rem, 2.6vw, 1rem);
+	letter-spacing: .04em;
+	color: #d9e8bf;
+}
+
 #status-notice {
 	background-color: #5b3943;
 	border-radius: 0.5rem;
@@ -135,12 +180,19 @@ body {
 				<span class="sub">CỜ THÚ 2D · ĐANG TẢI...</span>
 			</div>
 			<progress id="status-progress"></progress>
+			<span id="status-pct">Đang chuẩn bị…</span>
 			<div id="status-notice"></div>
+		</div>
+
+		<div id="rotate-overlay">
+			<div class="icon">📱↻</div>
+			<div class="msg">HÃY XOAY NGANG ĐIỆN THOẠI</div>
+			<div class="sub">Bàn cờ 9 ô cần màn hình ngang để hiển thị đẹp.<br>Xoay thiết bị rồi giữ nguyên hướng ngang để chơi.</div>
 		</div>
 
 		<script src="CoThu.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"CoThu","experimentalVK":true,"fileSizes":{"CoThu.pck":53023732,"CoThu.wasm":37695054},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"CoThu.service.worker.js"};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"CoThu","experimentalVK":true,"fileSizes":{"CoThu.pck":47027908,"CoThu.wasm":37695054},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"CoThu.service.worker.js"};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -148,6 +200,14 @@ const engine = new Engine(GODOT_CONFIG);
 	const statusOverlay = document.getElementById('status');
 	const statusProgress = document.getElementById('status-progress');
 	const statusNotice = document.getElementById('status-notice');
+	const statusPct = document.getElementById('status-pct');
+
+	// Nhắc người chơi biết đây là file game lớn, đang tải thật (không bị treo).
+	setTimeout(function () {
+		if (initializing && statusPct) {
+			statusPct.textContent = 'Đang tải dữ liệu game (~50 MB). Vui lòng đợi…';
+		}
+	}, 12000);
 
 	let initializing = true;
 	let statusMode = '';
@@ -233,6 +293,9 @@ const engine = new Engine(GODOT_CONFIG);
 				if (current > 0 && total > 0) {
 					statusProgress.value = current;
 					statusProgress.max = total;
+					if (statusPct) {
+						statusPct.textContent = 'Đang tải dữ liệu game… ' + Math.floor(current * 100 / total) + '%';
+					}
 				} else {
 					statusProgress.removeAttribute('value');
 					statusProgress.removeAttribute('max');
