@@ -42,6 +42,9 @@ git push -u origin main
    - `https://<TEN_TAI_KHOAN>.github.io/<TEN_REPO>/`
    - Nếu repo đặt tên `<TEN_TAI_KHOAN>.github.io` thì link là `https://<TEN_TAI_KHOAN>.github.io/`.
 
+**Bản đang public:** https://troggzz.github.io/jungle-chess-2d/ (repo `https://github.com/Troggzz/jungle-chess-2d`).
+Supabase: `https://hgrevylyxqfeobqrdcha.supabase.co`.
+
 ## Cập nhật lần sau
 
 Export Web lại từ Godot, **copy `CoThu.html` → `index.html`**, rồi copy toàn bộ file vào folder này
