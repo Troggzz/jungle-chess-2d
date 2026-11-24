@@ -1,0 +1,9 @@
+# Pages repo là public: chặn secret OAuth/service role/env.
+OAuth*.json
+OAuth*.JSON
+client_secret*
+service_role*
+*service-role*
+.env
+.env.*
+*.env

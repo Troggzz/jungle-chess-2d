@@ -1,6 +1,6 @@
-# Đại Chiến Thú Rừng — bản Web (GitHub Pages)
+# Beast Vault — Hex Tactics Royale (GitHub Pages)
 
-Đây là bản **static Web** của game Cờ Thú 2D, export từ Godot 4.6.2.
+Đây là bản **static Web** của Beast Vault (tên cũ: Cờ Thú 2D / Đại Chiến Thú Rừng), export từ Godot 4.6.2. URL Pages giữ nguyên `jungle-chess-2d`.
 **Nơi up chính thức từ 23/11/2026: GitHub Pages** (thay cho Netlify Drop).
 
 ## Cấu trúc (bắt buộc đúng cấp gốc repo)

@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, viewport-fit=cover">
 		<meta name="theme-color" content="#1b2716">
-		<title>Đại Chiến Thú Rừng</title>
+		<title>Beast Vault</title>
 		<style>
 html, body, #canvas {
 	margin: 0;
@@ -60,6 +60,19 @@ body {
 @keyframes turn { 0%, 100% { transform: rotate(-25deg); } 50% { transform: rotate(65deg); } }
 @media (orientation: portrait) and (max-width: 900px) {
 	#rotate-overlay { display: flex; }
+}
+/* Cho phép bỏ qua khi người chơi/test không xoay được thiết bị (vd cửa sổ desktop bị thu hẹp). */
+body.force-landscape #rotate-overlay { display: none !important; }
+#rotate-bypass {
+	margin-top: 1.4rem;
+	padding: .7rem 1.1rem;
+	border: 1px solid #f6d98a;
+	border-radius: 10px;
+	background: rgba(27, 39, 22, .85);
+	color: #f6d98a;
+	font: inherit;
+	font-size: .9rem;
+	cursor: pointer;
 }
 
 #status, #status-splash, #status-progress {
@@ -176,8 +189,8 @@ body {
 
 		<div id="status">
 			<div id="status-brand">
-				<span class="title">ĐẠI CHIẾN THÚ RỪNG</span>
-				<span class="sub">CỜ THÚ 2D · ĐANG TẢI...</span>
+				<span class="title">BEAST VAULT</span>
+				<span class="sub">HEX TACTICS ROYALE · LOADING...</span>
 			</div>
 			<progress id="status-progress"></progress>
 			<span id="status-pct">Đang chuẩn bị…</span>
@@ -187,12 +200,13 @@ body {
 		<div id="rotate-overlay">
 			<div class="icon">📱↻</div>
 			<div class="msg">HÃY XOAY NGANG ĐIỆN THOẠI</div>
-			<div class="sub">Bàn cờ 9 ô cần màn hình ngang để hiển thị đẹp.<br>Xoay thiết bị rồi giữ nguyên hướng ngang để chơi.</div>
+			<div class="sub">Bàn cờ 44 ô cần màn hình ngang để hiển thị đẹp.<br>Xoay thiết bị rồi giữ nguyên hướng ngang để chơi.</div>
+			<button id="rotate-bypass" type="button">Vẫn chơi ở chế độ hẹp</button>
 		</div>
 
 		<script src="CoThu.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"CoThu","experimentalVK":true,"fileSizes":{"CoThu.pck":47047972,"CoThu.wasm":37695054},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"CoThu.service.worker.js"};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"CoThu","experimentalVK":true,"fileSizes":{"CoThu.pck":47058436,"CoThu.wasm":37695054},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"CoThu.service.worker.js"};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -201,6 +215,21 @@ const engine = new Engine(GODOT_CONFIG);
 	const statusProgress = document.getElementById('status-progress');
 	const statusNotice = document.getElementById('status-notice');
 	const statusPct = document.getElementById('status-pct');
+	const rotateBypass = document.getElementById('rotate-bypass');
+	if (rotateBypass) {
+		rotateBypass.addEventListener('click', function () {
+			document.body.classList.add('force-landscape');
+		});
+	}
+
+	// Godot bật cờ này lúc vào trận; F5/tải lại sẽ hỏi xác nhận thay vì mất ván im lặng.
+	window.__beastVaultInMatch = false;
+	window.addEventListener('beforeunload', function (e) {
+		if (!window.__beastVaultInMatch) return;
+		e.preventDefault();
+		e.returnValue = '';
+		return '';
+	});
 
 	// Nhắc người chơi biết đây là file game lớn, đang tải thật (không bị treo).
 	setTimeout(function () {
