@@ -198,7 +198,7 @@ body.force-landscape #rotate-overlay { display: none !important; }
 		</div>
 
 		<div id="rotate-overlay">
-			<div class="icon">📱↻</div>
+			<div class="icon">↻</div>
 			<div class="msg">HÃY XOAY NGANG ĐIỆN THOẠI</div>
 			<div class="sub">Bàn cờ 44 ô cần màn hình ngang để hiển thị đẹp.<br>Xoay thiết bị rồi giữ nguyên hướng ngang để chơi.</div>
 			<button id="rotate-bypass" type="button">Vẫn chơi ở chế độ hẹp</button>
@@ -206,7 +206,7 @@ body.force-landscape #rotate-overlay { display: none !important; }
 
 		<script src="CoThu.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"CoThu","experimentalVK":true,"fileSizes":{"CoThu.pck":47058436,"CoThu.wasm":37695054},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"CoThu.service.worker.js"};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"CoThu","experimentalVK":true,"fileSizes":{"CoThu.pck":47179960,"CoThu.wasm":37695054},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"CoThu.service.worker.js"};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -285,7 +285,7 @@ const engine = new Engine(GODOT_CONFIG);
 	});
 
 	if (missing.length !== 0) {
-		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+		if (GODOT_CONFIGm'serviceWorker'] && GODOT_CONFIGm'ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
 			let serviceWorkerRegistrationPromise;
 			try {
 				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
@@ -293,7 +293,7 @@ const engine = new Engine(GODOT_CONFIG);
 				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
 			}
 			// There's a chance that installing the service worker would fix the issue
-			Promise.race([
+			Promise.race(m
 				serviceWorkerRegistrationPromise.then((registration) => {
 					if (registration != null) {
 						return Promise.reject(new Error('Service worker already exists.'));

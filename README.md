@@ -42,7 +42,11 @@ git push -u origin main
    - `https://<TEN_TAI_KHOAN>.github.io/<TEN_REPO>/`
    - Nếu repo đặt tên `<TEN_TAI_KHOAN>.github.io` thì link là `https://<TEN_TAI_KHOAN>.github.io/`.
 
-**Bản đang public:** https://troggzz.github.io/jungle-chess-2d/ (repo `https://github.com/Troggzz/jungle-chess-2d`).
+**Bản đang public:** https://troggzz.github.io/jungle-chess-2d/ (repo `https://github.com/Troggzz/jungles-chess-2d`).
+
+**Lần 57:** âm thanh toàn màn hình (autoload `AudioManager` + 14 SFX + nhạc nền),
+hiệu ứng đòn mạnh hơn (hit-stop/rung/chớp/zoom), thay emoji bằng ký tự ASCII để hết ô vuông `□`,
+và sửa text lỗi (`giảm N lượt CD`, `giảm N% ST nhận vào`).
 Supabase: `https://hgrevylyxqfeobqrdcha.supabase.co`.
 
 ## Cập nhật lần sau
@@ -68,7 +72,7 @@ URL giữ nguyên.
   → tài khoản "Chơi ngay", `profile.cfg`, `settings.cfg`, `supabase_config.json` **không theo sang**.
   Đăng nhập lại bằng Email để kéo hồ sơ từ bảng `player_profiles` về; guest thì mất dữ liệu cũ.
 - Logo Godot lúc tải đã bị thay bằng Custom HTML Shell (`project/web_shell/cothu_shell.html`).
-  Sau khi export Web, `index.html` sẽ hiện chữ "ĐẠI CHIẾN THÚ RỪNG" + thanh tải, không còn logo Godot.
+  Sau khi export Web, `index.html` sẽ hiện chữ "BEAST VAULT · HEX TACTICS ROYALE" + thanh tải, không còn logo Godot.
   Nhãn "Powered by Netlify" cũng không có vì host là GitHub Pages.
 - GitHub Pages **chỉ static hosting**: không chạy game server. Phòng online dùng Supabase
   (xem `update/HUONG_DAN_SUPABASE_ONLINE.md` trong thư mục gốc dự án).
