@@ -285,7 +285,7 @@ const engine = new Engine(GODOT_CONFIG);
 	});
 
 	if (missing.length !== 0) {
-		if (GODOT_CONFIGm'serviceWorker'] && GODOT_CONFIGm'ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
+		if (GODOT_CONFIG['serviceWorker'] && GODOT_CONFIG['ensureCrossOriginIsolationHeaders'] && 'serviceWorker' in navigator) {
 			let serviceWorkerRegistrationPromise;
 			try {
 				serviceWorkerRegistrationPromise = navigator.serviceWorker.getRegistration();
@@ -293,7 +293,7 @@ const engine = new Engine(GODOT_CONFIG);
 				serviceWorkerRegistrationPromise = Promise.reject(new Error('Service worker registration failed.'));
 			}
 			// There's a chance that installing the service worker would fix the issue
-			Promise.race(m
+			Promise.race([
 				serviceWorkerRegistrationPromise.then((registration) => {
 					if (registration != null) {
 						return Promise.reject(new Error('Service worker already exists.'));
