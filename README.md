@@ -42,7 +42,10 @@ git push -u origin main
    - `https://<TEN_TAI_KHOAN>.github.io/<TEN_REPO>/`
    - Nếu repo đặt tên `<TEN_TAI_KHOAN>.github.io` thì link là `https://<TEN_TAI_KHOAN>.github.io/`.
 
-**Bản đang public:** https://troggzz.github.io/jungle-chess-2d/ (repo `https://github.com/Troggzz/jungles-chess-2d`).
+**Bản đang public:** https://troggzz.github.io/jungle-chess-2d/ (repo `https://github.com/Troggzz/jungle-chess-2d`).
+
+**Lần 58:** Báo rõ khi khách cần đăng nhập để tạo phòng Online, thêm lối về màn đăng nhập,
+cải thiện form Web ở khổ dọc và không để hướng dẫn che Cẩm nang.
 
 **Lần 57:** âm thanh toàn màn hình (autoload `AudioManager` + 14 SFX + nhạc nền),
 hiệu ứng đòn mạnh hơn (hit-stop/rung/chớp/zoom), thay emoji bằng ký tự ASCII để hết ô vuông `□`,
