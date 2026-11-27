@@ -44,6 +44,9 @@ git push -u origin main
 
 **Bản đang public:** https://troggzz.github.io/jungle-chess-2d/ (repo `https://github.com/Troggzz/jungle-chess-2d`).
 
+**Lần 60:** Chơi ngay tự chờ phiên khách khi tạo/tìm phòng. Google Web quay lại trong cùng tab.
+Bỏ chữ báo nước đi/đổi lượt trên bàn và bỏ emoji lỗi font trong giao diện chat.
+
 **Lần 59:** Sửa tạo/tìm phòng trên Web và đồng bộ vào trận khi chủ phòng bấm Bắt đầu.
 
 **Lần 58:** Báo rõ khi khách cần đăng nhập để tạo phòng Online, thêm lối về màn đăng nhập,
