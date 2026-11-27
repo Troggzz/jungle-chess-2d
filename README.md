@@ -44,6 +44,8 @@ git push -u origin main
 
 **Bản đang public:** https://troggzz.github.io/jungle-chess-2d/ (repo `https://github.com/Troggzz/jungle-chess-2d`).
 
+**Lần 59:** Sửa tạo/tìm phòng trên Web và đồng bộ vào trận khi chủ phòng bấm Bắt đầu.
+
 **Lần 58:** Báo rõ khi khách cần đăng nhập để tạo phòng Online, thêm lối về màn đăng nhập,
 cải thiện form Web ở khổ dọc và không để hướng dẫn che Cẩm nang.
 

@@ -206,7 +206,7 @@ body.force-landscape #rotate-overlay { display: none !important; }
 
 		<script src="CoThu.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"CoThu","experimentalVK":true,"fileSizes":{"CoThu.pck":47182536,"CoThu.wasm":37695054},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"CoThu.service.worker.js"};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"emscriptenPoolSize":8,"ensureCrossOriginIsolationHeaders":false,"executable":"CoThu","experimentalVK":true,"fileSizes":{"CoThu.pck":47185080,"CoThu.wasm":37695054},"focusCanvas":true,"gdextensionLibs":[],"godotPoolSize":4,"serviceWorker":"CoThu.service.worker.js"};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -230,6 +230,32 @@ const engine = new Engine(GODOT_CONFIG);
 		e.returnValue = '';
 		return '';
 	});
+
+	// REST cần mã HTTP + nội dung JSON đã giải mã của trình duyệt.
+	window.__beastVaultRest = async function (url, method, headersJson, body, done) {
+		const controller = new AbortController();
+		const timer = setTimeout(() => controller.abort(), 10000);
+		let status = 0;
+		let text = '';
+		let error = '';
+		try {
+			const response = await fetch(url, {
+				method,
+				headers: JSON.parse(headersJson),
+				body: body || undefined,
+				signal: controller.signal,
+				credentials: 'omit',
+				redirect: 'error',
+			});
+			status = response.status;
+			text = await response.text();
+		} catch (err) {
+			error = err.name === 'AbortError' ? 'Server phản hồi quá chậm.' : 'Không đọc được phản hồi từ server.';
+		} finally {
+			clearTimeout(timer);
+		}
+		done(status, text, error);
+	};
 
 	// Nhắc người chơi biết đây là file game lớn, đang tải thật (không bị treo).
 	setTimeout(function () {
